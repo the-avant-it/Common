@@ -1,0 +1,33 @@
+---
+- become: yes
+  block:
+  
+  - name: Install tools
+    apt:
+      name: "{{ item }}"
+      state: present
+      update_cache: yes
+      cache_valid_time: 36000
+    loop:
+    - net-tools
+    - nmap
+    - htop
+    - iotop
+    - git-crypt
+    - neovim
+
+  - name: Disable automatic updates
+    lineinfile:
+      dest: /etc/apt/apt.conf.d/20auto-upgrades
+      state: present
+      regexp: "{{ item.regexp }}"
+      line: "{{ item.line }}"
+    loop:
+    - regexp: "^APT::Periodic::Update-Package-Lists"
+      line: APT::Periodic::Update-Package-Lists "0";
+    - regexp: "^APT::Periodic::Download-Upgradeable-Packages"
+      line: APT::Periodic::Download-Upgradeable-Packages "0";
+    - regexp: "^APT::Periodic::AutocleanInterval"
+      line: APT::Periodic::AutocleanInterval "0";
+    - regexp: "^APT::Periodic::Unattended-Upgrade"
+      line: APT::Periodic::Unattended-Upgrade "1";
