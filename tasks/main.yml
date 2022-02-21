@@ -16,7 +16,7 @@
     - git-crypt
     - neovim
 
-  - name: Disable automatic updates
+  - name: Disable automatic updates for APT
     lineinfile:
       dest: /etc/apt/apt.conf.d/20auto-upgrades
       state: present
@@ -31,3 +31,19 @@
       line: APT::Periodic::AutocleanInterval "0";
     - regexp: "^APT::Periodic::Unattended-Upgrade"
       line: APT::Periodic::Unattended-Upgrade "1";
+
+  # https://askubuntu.com/questions/930593/how-to-disable-autorefresh-in-snap#:~:text=Disable%20automatic%20updating%20if%20the,the%20connection%20as%20being%20metered.&text=refresh.,-metered%3Dhold%20only
+  # Enable again:
+  # sudo systemctl unmask snapd.service
+  # sudo systemctl start  snapd.service
+  # sudo snap refresh  
+
+  - name: Stop snapd service
+    service: 
+      name: snapd.service 
+      state: stopped
+
+  - name: Mask snapd service
+    command: systemctl mask snapd.service
+    register: r 
+    changed_when: "'Created symlink' in r.stdout" 
