@@ -9,6 +9,8 @@
       update_cache: yes
       cache_valid_time: 36000
     loop:
+    - apt-transport-https 
+    - ca-certificates    
     - net-tools
     - nmap
     - htop
