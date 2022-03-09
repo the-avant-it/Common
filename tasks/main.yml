@@ -62,6 +62,7 @@
       service: 
         name: snapd.service 
         state: stopped
+      register: r
 
     - name: Mask snapd service
       command: systemctl mask snapd.service
