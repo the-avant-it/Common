@@ -18,12 +18,18 @@
     - git-crypt
     - neovim
 
+  - name: Get /etc/apt/apt.conf.d/20auto-upgrades stat
+    stat:
+      path: /etc/apt/apt.conf.d/20auto-upgrades
+    register: config
+
   - name: Disable automatic updates for APT
     lineinfile:
       dest: /etc/apt/apt.conf.d/20auto-upgrades
       state: present
       regexp: "{{ item.regexp }}"
       line: "{{ item.line }}"
+    when: config.stat.exists
     loop:
     - regexp: "^APT::Periodic::Update-Package-Lists"
       line: APT::Periodic::Update-Package-Lists "0";
