@@ -46,10 +46,14 @@
   # sudo systemctl start  snapd.service
   # sudo snap refresh  
 
+  - name: Populate service facts
+    service_facts:
+
   - name: Stop snapd service
     service: 
       name: snapd.service 
       state: stopped
+    when: "'snapd' in services"
 
   - name: Mask snapd service
     command: systemctl mask snapd.service
