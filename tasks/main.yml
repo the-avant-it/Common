@@ -54,6 +54,7 @@
   - name: Get services
     command: systemctl list-unit-files
     register: units
+    changed_when: false
 
   - when: "'snapd.service' in units.stdout"
     block: 
@@ -62,8 +63,8 @@
       service: 
         name: snapd.service 
         state: stopped
-      register: r
 
     - name: Mask snapd service
       command: systemctl mask snapd.service
+      register: r
       changed_when: "'Created symlink' in r.stdout" 
