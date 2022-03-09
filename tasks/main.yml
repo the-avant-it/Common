@@ -56,6 +56,7 @@
     register: units
     changed_when: false
 
+  # Ubuntu 20.04 instances do not have snapd installed on YandexCloud
   - when: "'snapd.service' in units.stdout"
     block: 
 
