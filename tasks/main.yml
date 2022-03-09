@@ -52,7 +52,7 @@
   #   service_facts:
 
   - name: Get services
-    command: systemd list-unit-files
+    command: systemctl list-unit-files
     register: units
 
   - when: "'snapd.service' in units.stdout"
