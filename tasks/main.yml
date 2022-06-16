@@ -17,6 +17,12 @@
     - iotop
     - git-crypt
     - neovim
+    - python3-pip
+
+  - name: Install pexpect
+    pip:
+      name: pexpect
+      umask: "0022"
 
   - name: Get /etc/apt/apt.conf.d/20auto-upgrades stat
     stat:
