@@ -8,3 +8,7 @@ Basic configuration for any VM
 
 - Add traceroute for VK cloud
 - Add retries for apt update for Russia
+
+## V1.3.0
+
+- Do not run the role if it executed recently

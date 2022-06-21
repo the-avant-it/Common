@@ -1,5 +1,14 @@
 ---
+# Do not run this role every time
+- name: Find recent run marker
+  find:
+    paths: /tmp
+    pattern: '{{ role_name }}.run-marker'
+    age: -1h
+  register: run_marker
+
 - become: yes
+  when: run_marker.files | length == 0
   block:
 
   - name: Apt update
@@ -82,3 +91,8 @@
       command: systemctl mask snapd.service
       register: r
       changed_when: "'Created symlink' in r.stdout" 
+
+  - name: Create run marker
+    file:
+      path: /tmp/{{ role_name }}.run-marker
+      state: touch      
