@@ -8,7 +8,7 @@
   register: run_marker
 
 - become: yes
-  when: run_marker.files | length == 0
+  when: run_marker.files | length == 0 or not common.enable_cache
   block:
 
   - name: Apt update
@@ -34,6 +34,8 @@
     - neovim
     - python3-pip
     - traceroute
+    # Installing via PIP does not always work
+    - python-pexpect
 
   - name: Install pexpect
     pip:
