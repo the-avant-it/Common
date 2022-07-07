@@ -12,3 +12,7 @@ Basic configuration for any VM
 ## V1.3.0
 
 - Do not run the role if it executed recently
+
+## V1.4.0
+
+- Add optional common.enable_cache var and python-pexpect apt package
