@@ -4,6 +4,10 @@ Basic configuration for any VM
 
 # Changelog
 
+## V1.6.0
+
+- Add dnspython
+
 ## V1.5.1
 
 - Fix cache miss

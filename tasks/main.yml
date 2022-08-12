@@ -37,15 +37,14 @@
     # Installing via PIP does not always work
     - python-pexpect
 
-  - name: Install pexpect
+  - name: Install commonly used python packages
     pip:
-      name: pexpect
+      name: "{{ item }}"
       umask: "0022"
-
-  - name: Install passlib
-    pip:
-      name: passlib
-      umask: "0022"
+    loop: 
+    - pexpect
+    - passlib
+    - dnspython
 
   - name: Get /etc/apt/apt.conf.d/20auto-upgrades stat
     stat:
