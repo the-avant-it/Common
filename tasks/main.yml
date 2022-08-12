@@ -101,5 +101,5 @@
 
   - name: Create run marker
     file:
-      path: /tmp/{{ role_name }}.run-marker
+      path: /tmp/{{ role_name }}.{{ common.cache_key }}.run-marker
       state: touch      

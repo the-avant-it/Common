@@ -4,6 +4,10 @@ Basic configuration for any VM
 
 # Changelog
 
+## V1.5.1
+
+- Fix cache miss
+
 ## V1.5.0
 
 - Add Install passlib
