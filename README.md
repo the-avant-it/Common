@@ -4,6 +4,10 @@ Basic configuration for any VM
 
 # Changelog
 
+## V1.5.0
+
+- Add Install passlib
+
 ## V1.4.0
 
 - Add optional common.enable_cache var and python-pexpect apt package
