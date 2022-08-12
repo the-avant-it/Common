@@ -3,7 +3,7 @@
 - name: Find recent run marker
   find:
     paths: /tmp
-    pattern: '{{ role_name }}.run-marker'
+    pattern: '{{ role_name }}.{{ common.cache_key }}.run-marker'
     age: -1h
   register: run_marker
 

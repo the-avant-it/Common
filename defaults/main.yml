@@ -1,2 +1,3 @@
 common:
   enable_cache: yes
+  cache_key: default

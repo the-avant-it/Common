@@ -7,6 +7,7 @@ Basic configuration for any VM
 ## V1.5.0
 
 - Add Install passlib
+- Add optional common.cache_key
 
 ## V1.4.0
 
