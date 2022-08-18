@@ -102,3 +102,10 @@
     file:
       path: /tmp/{{ role_name }}.{{ common.cache_key }}.run-marker
       state: touch      
+
+  - name: Change hostanme
+    hostname:
+      name: "{{ hostname }}"
+      use: systemd
+    when: hostname is defined
+
