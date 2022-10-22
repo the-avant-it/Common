@@ -4,6 +4,16 @@ Basic configuration for any VM
 
 # Changelog
 
+## V1.7.0
+
+- Enable TCP BBR to improve network speed
+- BREAKING CHANGE: Refac hostname module
+- Add stress, iperf3, mtr
+
+## V1.6.1
+
+- Add hostname module
+
 ## V1.6.0
 
 - Add dnspython

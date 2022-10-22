@@ -36,6 +36,9 @@
     - traceroute
     # Installing via PIP does not always work
     - python-pexpect
+    - stress
+    - iperf3
+    - mtr
 
   - name: Install commonly used python packages
     pip:
@@ -102,10 +105,23 @@
     file:
       path: /tmp/{{ role_name }}.{{ common.cache_key }}.run-marker
       state: touch      
-
+  
   - name: Change hostanme
     hostname:
-      name: "{{ hostname }}"
+      name: "{{ common.hostname }}"
       use: systemd
-    when: hostname is defined
+    when: common.hostname is defined
 
+  # https://www.techrepublic.com/article/how-to-enable-tcp-bbr-to-improve-network-speed-on-linux/
+  - name: Enable TCP BBR to improve network speed
+    ansible.posix.sysctl:
+      name: "{{ item.name }}"
+      value: "{{ item.value }}"
+      sysctl_set: yes
+      reload: yes
+    # https://gist.github.com/voluntas/bc54c60aaa7ad6856e6f6a928b79ab6c
+    loop: 
+    - name: net.core.default_qdisc
+      value: fq 
+    - name: net.ipv4.tcp_congestion_control
+      value: bbr 
