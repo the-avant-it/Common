@@ -39,7 +39,8 @@
     - stress
     - iperf3
     - mtr
-
+    ignore_errors: "{{ common.ignore_package_installation_errors }}"
+    
   - name: Install commonly used python packages
     pip:
       name: "{{ item }}"
@@ -48,6 +49,7 @@
     - pexpect
     - passlib
     - dnspython
+    ignore_errors: "{{ common.ignore_package_installation_errors }}"
 
   - name: Get /etc/apt/apt.conf.d/20auto-upgrades stat
     stat:

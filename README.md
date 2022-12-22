@@ -4,6 +4,10 @@ Basic configuration for any VM
 
 # Changelog
 
+## V1.8.0
+
+- Add common.ignore_package_installation_errors variable
+
 ## V1.7.0
 
 - Enable TCP BBR to improve network speed
