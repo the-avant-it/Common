@@ -4,6 +4,10 @@ Basic configuration for any VM
 
 # Changelog
 
+## V1.8.1
+
+- Honor ignore_package_installation_errors on apt update
+
 ## V1.8.0
 
 - Add common.ignore_package_installation_errors variable
