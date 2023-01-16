@@ -40,6 +40,7 @@
     - stress
     - iperf3
     - mtr
+    - unzip
     ignore_errors: "{{ common.ignore_package_installation_errors }}"
     
   - name: Install commonly used python packages

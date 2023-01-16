@@ -4,6 +4,10 @@ Basic configuration for any VM
 
 # Changelog
 
+## V1.8.2
+
+- Add unzip
+
 ## V1.8.1
 
 - Honor ignore_package_installation_errors on apt update
