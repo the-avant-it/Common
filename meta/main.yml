@@ -2,7 +2,7 @@ galaxy_info:
   author: Radmir Gataullin
   description: Basic configuration for any VM
   company: Radmir Gataullin
-  role_name: common_fluentd
+  role_name: common_common
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
