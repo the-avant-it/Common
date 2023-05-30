@@ -18,7 +18,7 @@
     # For Russia
     retries: 3
     delay: 10 
-    ignore_errors: "{{ common.ignore_package_installation_errors }}" 
+    failed_when: "'Failed to update' in ansible_failed_result.msg" 
 
   - name: Install tools
     apt:
@@ -41,7 +41,7 @@
     - iperf3
     - mtr
     - unzip
-    ignore_errors: "{{ common.ignore_package_installation_errors }}"
+    failed_when: false
     
   - name: Install commonly used python packages
     pip:
@@ -51,7 +51,7 @@
     - pexpect
     - passlib
     - dnspython
-    ignore_errors: "{{ common.ignore_package_installation_errors }}"
+    failed_when: "'pip' in ansible_failed_result.rc"
 
   - name: Get /etc/apt/apt.conf.d/20auto-upgrades stat
     stat:
@@ -87,7 +87,8 @@
   #   service_facts:
 
   - name: Get services
-    command: systemctl list-unit-files
+    systemd:
+      state: list
     register: units
     changed_when: false
 
