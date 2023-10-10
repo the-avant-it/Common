@@ -56,8 +56,9 @@ Basic configuration for any VM
 # Documentation for 1.8.2
 
 ## Variables
-
-    common:
-    enable_cache: yes
-    cache_key: default
-    ignore_package_installation_errors: no
+```yaml
+common:
+  enable_cache: yes
+  cache_key: default
+  ignore_package_installation_errors: no
+```
