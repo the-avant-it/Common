@@ -51,3 +51,14 @@ Basic configuration for any VM
 
 - Add traceroute for VK cloud
 - Add retries for apt update for Russia
+
+
+# Documentation for 1.8.2
+
+## Variables
+```yaml
+common:
+  enable_cache: yes
+  cache_key: default
+  ignore_package_installation_errors: no
+```
