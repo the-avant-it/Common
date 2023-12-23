@@ -2,3 +2,4 @@ common:
   enable_cache: yes
   cache_key: default
   ignore_package_installation_errors: no
+  skip_sysctl: false

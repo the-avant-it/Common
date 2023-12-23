@@ -127,6 +127,7 @@
       value: "{{ item.value }}"
       sysctl_set: yes
       reload: yes
+    when: not common.skip_sysctl
     # https://gist.github.com/voluntas/bc54c60aaa7ad6856e6f6a928b79ab6c
     loop: 
     - name: net.core.default_qdisc

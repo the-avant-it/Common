@@ -4,6 +4,10 @@ Basic configuration for any VM
 
 # Changelog
 
+## 1.9.0
+
+- Add skip_sysctl var (should be set to true when running in container!)
+
 ## 1.8.2
 
 - Add unzip
@@ -52,7 +56,7 @@ Basic configuration for any VM
 - Add traceroute for VK cloud
 - Add retries for apt update for Russia
 
-# Documentation for 1.8.2
+# Documentation for 1.9.0
 
 ## Variables
 
@@ -64,4 +68,6 @@ common:
   cache_key: default
   # Optional
   ignore_package_installation_errors: no
+  # Optional. False by default. Should be set to true when aplying role to container!
+  skip_sysctl: false
 ```
