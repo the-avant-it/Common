@@ -4,7 +4,7 @@ Basic configuration for any VM
 
 # Changelog
 
-## 1.9.3
+## 1.9.4
 
 - Add skip_sysctl var (should be set to true when running in container!)
 
