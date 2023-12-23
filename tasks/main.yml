@@ -18,7 +18,7 @@
     # For Russia
     retries: 3
     delay: 10 
-    failed_when: "'Failed to update' in ansible_failed_result.msg" 
+    ignore_errors: "{{ common.ignore_package_installation_errors }}" 
 
   - name: Install tools
     apt:
