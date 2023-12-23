@@ -7,6 +7,7 @@ Basic configuration for any VM
 ## 1.9.4
 
 - Add skip_sysctl var (should be set to true when running in container!)
+- Fix lint errors 
 
 ## 1.8.2
 
