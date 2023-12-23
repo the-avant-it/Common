@@ -51,7 +51,7 @@
     - pexpect
     - passlib
     - dnspython
-    failed_when: "'pip' in ansible_failed_result.rc"
+    ignore_errors: "{{ common.ignore_package_installation_errors }}"
 
   - name: Get /etc/apt/apt.conf.d/20auto-upgrades stat
     stat:
