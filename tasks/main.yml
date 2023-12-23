@@ -101,9 +101,9 @@
         state: stopped
 
     - name: Mask snapd service
-      systemd:
-        name: snapd
-        state: masked
+      command: systemctl mask snapd.service
+      register: r
+      changed_when: "'Created symlink' in r.stdout" 
 
   - name: Create run marker
     file:
