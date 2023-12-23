@@ -99,6 +99,8 @@
       service: 
         name: snapd.service 
         state: stopped
+      # If running during docker build stage the service wont be available
+      ignore_errors: true
 
     - name: Mask snapd service
       command: systemctl mask snapd.service
