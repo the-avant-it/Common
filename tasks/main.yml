@@ -87,8 +87,7 @@
   #   service_facts:
 
   - name: Get services
-    systemd:
-      state: list
+    command: systemctl list-unit-files
     register: units
     changed_when: false
 
