@@ -34,6 +34,7 @@
     - git-crypt
     - neovim
     - python3-pip
+    - python-setuptools
     - traceroute
     # Installing via PIP does not always work
     - python-pexpect
