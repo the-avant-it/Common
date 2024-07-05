@@ -4,7 +4,7 @@ Basic configuration for any VM
 
 # Changelog
 
-## 1.10.0
+## 1.10.1
 
 - Add Unminimize OS trask
 

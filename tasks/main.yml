@@ -12,7 +12,7 @@
   block:
 
   - name: Unminimize OS
-    shell: unminimize | yes
+    shell: yes | unminimize
     ignore_errors: yes
 
   - name: Apt update
