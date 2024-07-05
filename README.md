@@ -4,6 +4,10 @@ Basic configuration for any VM
 
 # Changelog
 
+## 1.10.0
+
+- Add Unminimize OS trask
+
 ## 1.9.6
 
 - Add skip_sysctl var (should be set to true when running in container!)

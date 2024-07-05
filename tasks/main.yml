@@ -11,6 +11,10 @@
   when: run_marker.files | length == 0 or not common.enable_cache
   block:
 
+  - name: Unminimize OS
+    shell: unminimize | yes
+    ignore_errors: yes
+
   - name: Apt update
     apt:
       update_cache: yes
