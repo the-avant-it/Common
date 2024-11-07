@@ -124,6 +124,16 @@
       use: systemd
     when: common.hostname is defined
 
+  - when: common.timezone is defined
+    block:
+    - name: Set timezone
+      timezone:
+        name: "{{ common.timezone }}"
+    - name: Set /etc/timezone
+      copy:
+        content: "{{ common.timezone }}\n"
+        dest: /etc/timezone
+
   # https://www.techrepublic.com/article/how-to-enable-tcp-bbr-to-improve-network-speed-on-linux/
   - name: Enable TCP BBR to improve network speed
     ansible.posix.sysctl:

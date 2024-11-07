@@ -4,6 +4,20 @@ Basic configuration for any VM
 
 # Changelog
 
+## 1.11.0
+
+- Add optional variables for set timezones
+```yaml
+common:
+  # Optional
+  timezone: "Europe/Moscow"
+```
+
+- To find your time zone, use:
+```
+timedatectl list-timezones
+```
+
 ## 1.10.1
 
 - Add Unminimize OS trask
