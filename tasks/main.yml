@@ -11,6 +11,31 @@
   when: run_marker.files | length == 0 or not common.enable_cache
   block:
 
+  - name: Ensure localhost resolves to 127.0.0.1
+    ansible.builtin.lineinfile:
+      path: /etc/hosts
+      line: "127.0.0.1 localhost"
+      state: present
+      create: yes
+
+  - when: common.language.setup 
+    become: yes
+    block:
+    - name: Install language pack
+      apt:
+        name: "{{ common.language.locale_package }}"
+        state: present
+    - name: Configure locale
+      locale_gen:
+        name: "{{ common.language.system_locale }}"
+        state: present
+    - name: Set default locale
+      lineinfile:
+        path: /etc/default/locale
+        regexp: '^LANG='
+        line: 'LANG={{ common.language.system_locale }}'
+        create: yes
+        
   - name: Unminimize OS
     shell: yes | unminimize
     ignore_errors: yes

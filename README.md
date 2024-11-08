@@ -4,7 +4,7 @@ Basic configuration for any VM
 
 # Changelog
 
-## 1.11.1
+## 1.11.2
 
 - Add optional variables for set timezones
 ```yaml
@@ -12,20 +12,18 @@ common:
   # Optional
   timezone: "Europe/Moscow"
 ```
-
 - To find your time zone, use:
 ```
 timedatectl list-timezones
 ```
-
-Also add variables for language:
+- Force add "localhost" resolves to 127.0.0.1
+- Also add variables for language:
 ```yaml
   language:
     setup: false
     locale_package: language-pack-en
     system_locale: en_US.utf8 
 ```
-
 https://sourceware.org/glibc/wiki/Locales
 
 
