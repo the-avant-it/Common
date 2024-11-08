@@ -124,7 +124,7 @@
       use: systemd
     when: common.hostname is defined
 
-  - when: common.timezone is defined
+  - when: common.timezone != ""
     block:
     - name: Set timezone
       timezone:

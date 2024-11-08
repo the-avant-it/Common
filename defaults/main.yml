@@ -3,3 +3,10 @@ common:
   cache_key: default
   ignore_package_installation_errors: no
   skip_sysctl: false
+  # Can be like this: "Europe/Moscow"
+  timezone: ""
+  # Default is en_US.utf8
+  language:
+    setup: false
+    locale_package: language-pack-en
+    system_locale: en_US.utf8  

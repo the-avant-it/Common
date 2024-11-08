@@ -4,7 +4,7 @@ Basic configuration for any VM
 
 # Changelog
 
-## 1.11.0
+## 1.11.1
 
 - Add optional variables for set timezones
 ```yaml
@@ -17,6 +17,17 @@ common:
 ```
 timedatectl list-timezones
 ```
+
+Also add variables for language:
+```yaml
+  language:
+    setup: false
+    locale_package: language-pack-en
+    system_locale: en_US.utf8 
+```
+
+https://sourceware.org/glibc/wiki/Locales
+
 
 ## 1.10.1
 
