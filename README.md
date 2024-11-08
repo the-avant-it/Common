@@ -12,7 +12,7 @@ common:
   # Optional
   timezone: "Europe/Moscow"
 ```
-- To find your time zone, use:
+To find your time zone, use:
 ```
 timedatectl list-timezones
 ```
