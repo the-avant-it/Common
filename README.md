@@ -4,6 +4,10 @@ Basic configuration for any VM
 
 # Changelog
 
+## 1.12.0
+
+- Add Setup delete old logs cron
+
 ## 1.11.2
 
 - Add optional variables for set timezones
@@ -25,7 +29,6 @@ timedatectl list-timezones
     system_locale: en_US.utf8 
 ```
 https://sourceware.org/glibc/wiki/Locales
-
 
 ## 1.10.1
 
