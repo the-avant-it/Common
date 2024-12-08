@@ -186,3 +186,59 @@
       value: fq 
     - name: net.ipv4.tcp_congestion_control
       value: bbr 
+
+  - name: Get memory and swap usage
+    command: free -b
+    register: memory_info
+    changed_when: false
+
+  - name: Parse memory and swap information
+    set_fact:
+      mem_total: "{{ memory_info.stdout_lines[1].split()[1] | int }}"
+      mem_available: "{{ memory_info.stdout_lines[1].split()[6] | int }}"
+      swap_total: "{{ memory_info.stdout_lines[2].split()[1] | int }}"
+      swap_used: "{{ memory_info.stdout_lines[2].split()[2] | int }}"
+      swap_free: "{{ memory_info.stdout_lines[2].split()[3] | int }}"
+
+  - name: Debug parsed memory and swap values
+    debug:
+      msg:
+        - "Parsed Total Memory: {{ mem_total }}"
+        - "Parsed Available Memory: {{ mem_available }}"
+        - "Parsed Total Swap: {{ swap_total }}"
+        - "Parsed Used Swap: {{ swap_used }}"
+        - "Parsed Free Swap: {{ swap_free }}"
+
+  - name: Check if swap is being used and can fit into available memory
+    set_fact:
+      can_disable_swap: >-
+        {{ ((swap_used | int) > 0) and ((swap_used | int) <= (mem_available | int)) }}
+
+  - name: Debug condition for disabling swap
+    debug:
+      msg:
+        - "Swap can be disabled: {{ can_disable_swap }}"
+        - "Reason: Swap used ({{ (swap_used | int) // (1024**2) }} MB) is less than or equal to available memory ({{ (mem_available | int) // (1024**2) }} MB)"
+
+  - name: Disable swap if conditions are met
+    block:
+      - name: Disable swap
+        command: swapoff -a
+        when: can_disable_swap
+
+      - name: Verify swap status after disabling
+        shell: swapon --show
+        register: swap_status
+        changed_when: false
+
+      - name: Debug swap status
+        debug:
+          msg: "Current swap status:\n{{ swap_status.stdout | default('No swap is active') }}"
+    rescue:
+      - name: Handle swapoff failure
+        debug:
+          msg: >-
+            "Swapoff command failed. Ensure there is enough memory or that swap is not actively used. 
+            Swap used: {{ (swap_used | int) // (1024**2) }} MB, Available memory: {{ (mem_available | int) // (1024**2) }} MB."
+
+ 
