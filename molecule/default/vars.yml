@@ -1,0 +1,3 @@
+hide_secrtets_from_log: false
+common:
+  hostname: molecule-host

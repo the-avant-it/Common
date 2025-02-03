@@ -1,0 +1,24 @@
+---
+- name: Verify Common Installation
+  hosts: all
+  gather_facts: true
+  vars_files:
+    - vars.yml
+  tasks:
+    - name: Check hostname
+      ansible.builtin.assert:
+        that:
+          - ansible_hostname == common.hostname
+        fail_msg: "Hostname is {{ ansible_hostname }}, expected '{{ common.hostname }}'"
+
+    - name: Ensure git-crypt is installed
+      ansible.builtin.command: dpkg-query -W -f='${Status}' git-crypt
+      register: git_crypt_check
+      changed_when: false
+      failed_when: "'install ok installed' not in git_crypt_check.stdout"
+
+    - name: Ensure automatic APT updates are disabled in 20auto-upgrades
+      ansible.builtin.command: grep -Fxq 'APT::Periodic::Update-Package-Lists "0";' /etc/apt/apt.conf.d/20auto-upgrades
+      register: auto_updates_status
+      changed_when: false
+      failed_when: auto_updates_status.rc != 0
