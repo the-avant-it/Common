@@ -18,6 +18,25 @@
       state: present
       create: yes
 
+  - name: Ensure DefaultLimitNOFILE is set in systemd configuration
+    lineinfile:
+      path: /etc/systemd/system.conf
+      regexp: '^DefaultLimitNOFILE='
+      line: 'DefaultLimitNOFILE=100000:524288'
+      state: present
+    notify: Reload systemd
+
+  - name: Reload systemd
+    systemd:
+      daemon_reload: yes
+    when: ansible_system == "Linux"
+
+  - name: Create run marker
+    file:
+      path: /tmp/{{ role_name }}.{{ common.cache_key }}.run-marker
+      state: touch   
+      mode: '0644'
+
   - when: common.language.setup 
     become: yes
     block:
