@@ -24,7 +24,6 @@
       regexp: '^DefaultLimitNOFILE='
       line: 'DefaultLimitNOFILE=100000:524288'
       state: present
-    notify: Reload systemd
 
   - name: Reload systemd
     systemd:
